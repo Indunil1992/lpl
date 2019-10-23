@@ -1,0 +1,129 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "f81b3523-e1b7-4f7a-8f3a-3e9e4c60eacc": {
+        "id": "f81b3523-e1b7-4f7a-8f3a-3e9e4c60eacc",
+        "parent": null,
+        "name": "lpl",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "f233102c-94f9-4a30-9864-cb944c71a76e"
+        ],
+        "isRemovable": false,
+        "filePath": "lpl"
+      },
+      "f233102c-94f9-4a30-9864-cb944c71a76e": {
+        "id": "f233102c-94f9-4a30-9864-cb944c71a76e",
+        "parent": "f81b3523-e1b7-4f7a-8f3a-3e9e4c60eacc",
+        "name": "lambda.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "lpl/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nconst s3 = new AWS.S3();\n\nexports.handler = function (event, context, callback) {\n    s3.getObject({\n        'Bucket': \"himm\",\n        'Key': \"1\"\n    }).promise()\n        .then(data => {\n            console.log(data);           // successful response\n            /*\n            data = {\n                AcceptRanges: \"bytes\", \n                ContentLength: 3191, \n                ContentType: \"image/jpeg\", \n                ETag: \"\\\"6805f2cfc46c0f04559748bb039d69ae\\\"\", \n                LastModified: \"<Date Representation>\", \n                Metadata: {}, \n                TagCount: 2, \n                VersionId: \"null\"\n            }\n            */\n        })\n        .catch(err => {\n            console.log(err, err.stack); // an error occurred\n        });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": []
+      }
+    },
+    "rootNode": "f81b3523-e1b7-4f7a-8f3a-3e9e4c60eacc",
+    "openFiles": [
+      "f233102c-94f9-4a30-9864-cb944c71a76e"
+    ],
+    "currentFileId": "f233102c-94f9-4a30-9864-cb944c71a76e",
+    "resources": {
+      "s3testQatrigger": {
+        "name": "s3testQatrigger",
+        "type": "S3",
+        "config": {
+          "mode": 0,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "test-qa.trigger"
+          }
+        }
+      },
+      "s3as2TestLahiru": {
+        "name": "s3as2TestLahiru",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "as2-test-lahiru"
+          }
+        }
+      },
+      "s3testQatrigger1": {
+        "name": "s3testQatrigger1",
+        "type": "S3",
+        "config": {
+          "mode": 0,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "test-qa.trigger1"
+          }
+        }
+      },
+      "s3himm": {
+        "name": "s3himm",
+        "type": "S3",
+        "config": {
+          "mode": 0,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "himm"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": null
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "language": "javascript",
+          "version": "2.176.0",
+          "dev": true,
+          "notRemovable": false
+        }
+      }
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "lpl",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1571818875051
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "lpl",
+      "url": "https://github.com/Indunil1992/lpl"
+    }
+  }
+}
